@@ -4,27 +4,33 @@
  */
 package com.is2022g33.componentes;
 
-import com.is2022g33.helpers.Cliente;
+import com.is2022g33.helpers.Persona;
 
 /**
  *
  * @author marcos
  */
-public class ListaClientes extends javax.swing.JPanel {
+public class ListaPersonas extends javax.swing.JPanel {
 
-    private Cliente[] clientes;
+    private Persona[] personas;
 
-    public ListaClientes() {
+    public ListaPersonas() {
         this(10);
     }
-    
+
     /**
      * Creates new form ListaClientes
+     *
+     * @param number
      */
-    public ListaClientes(int number) {
+    public ListaPersonas(int number) {
+        this(Persona.getPersonas(number));
+    }
+
+    public ListaPersonas(Persona[] personas) {
+        this.personas = personas;
         initComponents();
-        clientes = Cliente.getClientes(number);
-        this.setClientes();
+        this.setPersonas();
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(180);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
@@ -68,18 +74,18 @@ public class ListaClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private String[][] formatClientes() {
-        String[][] str = new String[clientes.length][3];
+        String[][] str = new String[personas.length][3];
 
-        for (int i = 0; i < clientes.length; i++) {
-            str[i][0] = clientes[i].nombre;
-            str[i][1] = clientes[i].apellidos;
-            str[i][2] = clientes[i].dni;
+        for (int i = 0; i < personas.length; i++) {
+            str[i][0] = personas[i].nombre;
+            str[i][1] = personas[i].apellidos;
+            str[i][2] = personas[i].dni;
         }
 
         return str;
     }
 
-    private void setClientes() {
+    private void setPersonas() {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 this.formatClientes(),
                 new String[]{
@@ -87,10 +93,10 @@ public class ListaClientes extends javax.swing.JPanel {
                 }
         ));
     }
-    
-    private void setClientes(Cliente[] clientes) {
-        this.clientes = clientes;
-        
+
+    public void setPersonas(Persona[] personas) {
+        this.personas = personas;
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 this.formatClientes(),
                 new String[]{
@@ -98,9 +104,13 @@ public class ListaClientes extends javax.swing.JPanel {
                 }
         ));
     }
-    
-    private Cliente[] getClientes(){
-        return clientes;
+
+    private Persona[] getPersonas() {
+        return personas;
+    }
+
+    private Persona getSelectedPersona() {
+        return jTable1.getSelectedRow() == -1 ? null : personas[jTable1.getSelectedRow()];
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

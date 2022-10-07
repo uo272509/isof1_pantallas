@@ -5,18 +5,23 @@
  */
 package com.is2022g33.pantallas;
 
-import com.is2022g33.componentes.ListaClientes;
+import com.is2022g33.componentes.ListaPersonas;
+import com.is2022g33.helpers.Persona;
 
 /**
  *
  * @author marcos
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    Persona[] clientes, colaboradores;
+    
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        clientes = Persona.getPersonas(5);
+        colaboradores = Persona.getPersonas(5);
+        
         initComponents();
     }
 
@@ -29,9 +34,10 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        listaClientes2 = new com.is2022g33.componentes.ListaClientes(100);
+        listaPolizas2 = new com.is2022g33.componentes.ListaPolizas(clientes, colaboradores, 3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(1190, 1115));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -39,15 +45,15 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(listaClientes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(549, Short.MAX_VALUE))
+                .addComponent(listaPolizas2, javax.swing.GroupLayout.PREFERRED_SIZE, 1148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(listaClientes2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addComponent(listaPolizas2, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(504, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,6 +95,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.is2022g33.componentes.ListaClientes listaClientes2;
+    private com.is2022g33.componentes.ListaPolizas listaPolizas2;
     // End of variables declaration//GEN-END:variables
 }
