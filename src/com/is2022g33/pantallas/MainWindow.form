@@ -28,8 +28,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="listaPolizas2" min="-2" pref="1148" max="-2" attributes="0"/>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <Component id="listaPersonas1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="771" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,17 +37,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="listaPolizas2" min="-2" pref="592" max="-2" attributes="0"/>
-              <EmptySpace pref="504" max="32767" attributes="0"/>
+              <Component id="listaPersonas1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="635" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.is2022g33.componentes.ListaPolizas" name="listaPolizas2">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.is2022g33.componentes.ListaPolizas(clientes, colaboradores, 3)"/>
-      </AuxValues>
+    <Component class="com.is2022g33.componentes.ListaPersonas" name="listaPersonas1">
     </Component>
   </SubComponents>
 </Form>
