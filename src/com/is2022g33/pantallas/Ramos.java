@@ -13,26 +13,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ramos extends javax.swing.JFrame {
     static DefaultTableModel tableModel;
-    static String[] ramos = new String[]{
-        "Automóvil",
-        "Vida",
-        "Hogar",
-        "Accidentes"
-    };
     
     /**
      * Creates new form Ramos
      */
     public Ramos() {
-        tableModel = new DefaultTableModel(
-                getTablaInfo(),
-                new String[]{
-                    "Nombre del Ramo", "Pólizas asociadas"
-                }
-        );
         initComponents();
-        
-        jTable1.setModel(tableModel);
     }
 
     /**
@@ -46,8 +32,7 @@ public class Ramos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ramos1 = new com.is2022g33.componentes.Ramos();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -68,27 +53,6 @@ public class Ramos extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                Ramos.this.focusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                Ramos.this.focusLost(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable1);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,16 +60,17 @@ public class Ramos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ramos1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ramos1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
 
@@ -144,7 +109,7 @@ public class Ramos extends javax.swing.JFrame {
                         .addComponent(jTextField1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
         );
@@ -189,75 +154,18 @@ public class Ramos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void focusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusGained
-        jButton1.setEnabled(true);
-    }//GEN-LAST:event_focusGained
-
-    private void focusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focusLost
-        jButton1.setEnabled(false);
-    }//GEN-LAST:event_focusLost
-
     private void cancel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel
         jTextField1.setText("");
     }//GEN-LAST:event_cancel
 
     private void newRamo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newRamo
-        String[] newramos = new String[ramos.length + 1];
-        
-        System.arraycopy(ramos, 0, newramos, 0, ramos.length);
-        
-        newramos[ramos.length] = jTextField1.getText();
-        ramos = newramos;
-        
-        jTextField1.setText("");
-        
-        updateTable();
+        ramos1.addRamo(jTextField1.getText());
     }//GEN-LAST:event_newRamo
 
     private void borraRamo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borraRamo
-        int sel = jTable1.getSelectedRow();             
-        String[] newramos = new String[ramos.length -1];
-        
-        /*
-        from 0; len sel
-        from 0; len sel
-
-        from sel+1; len len-sel+1
-        from sel; len len-sel+1
-        */
-        System.arraycopy(ramos, 0, newramos, 0, sel);
-        System.arraycopy(ramos, sel+1, newramos, sel, ramos.length-sel-1);
-        
-        ramos = newramos;
-        
-        updateTable();
+        ramos1.borraSelectedRamo();
     }//GEN-LAST:event_borraRamo
 
-    void updateTable(){
-        tableModel = new DefaultTableModel(
-                getTablaInfo(),
-                new String[]{
-                    "Nombre del Ramo", "Pólizas asociadas"
-                }
-        );
-        
-        jTable1.setModel(tableModel);
-    }
-    
-    static String[][] getTablaInfo() {
-        Random rand = new Random();
-        int size = ramos.length;//rand.nextInt(30);
-        String[][] rows = new String[size][2];
-        
-        for(int i = 0; i<size; i++)
-            rows[i] = new String[]{
-                   ramos[i],
-                   Integer.toString(rand.nextInt(100))
-            };
-        
-        return rows;
-    }
-    
     /**
      * @param args the command line arguments
      */
@@ -300,9 +208,8 @@ public class Ramos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private com.is2022g33.componentes.Ramos ramos1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,9 @@
 package com.is2022g33.componentes;
 
 import com.is2022g33.helpers.Persona;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -31,9 +34,9 @@ public class ListaPersonas extends javax.swing.JPanel {
         this.personas = personas;
         initComponents();
         this.setPersonas();
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(180);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(65);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
     }
 
     /**
@@ -111,6 +114,33 @@ public class ListaPersonas extends javax.swing.JPanel {
 
     private Persona getSelectedPersona() {
         return jTable1.getSelectedRow() == -1 ? null : personas[jTable1.getSelectedRow()];
+    }
+    
+    public void filterDni(String dni){
+        List<Persona> filtra = new ArrayList<>(Arrays.asList(personas));
+        
+        for(int i = filtra.size()-1; i>=0; i--)
+            if(!filtra.get(i).dni.startsWith(dni))
+                filtra.remove(i);
+        
+        String[][] str = new String[personas.length][3];
+
+        for (int i = 0; i < filtra.size(); i++) {
+            str[i][0] = filtra.get(i).nombre;
+            str[i][1] = filtra.get(i).apellidos;
+            str[i][2] = filtra.get(i).dni;
+        }
+        
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                str,
+                new String[]{
+                    "Nombre", "Apellidos", "DNI"
+                }
+        ));
+        
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(65);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
