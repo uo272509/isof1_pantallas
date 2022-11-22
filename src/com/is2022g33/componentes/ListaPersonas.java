@@ -142,6 +142,10 @@ public class ListaPersonas extends javax.swing.JPanel {
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
     }
+    
+    public void empty() {
+        this.setPersonas(new Persona[]{});
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
